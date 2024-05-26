@@ -32,8 +32,14 @@ const BuyerPage = () => {
 
   useEffect(() => {
     const storedProperties = JSON.parse(localStorage.getItem("properties")) || [];
+    const user = JSON.parse(localStorage.getItem('loggedInUser')) || [];
+    if(!user || user.role !== 'buyer'){
+      navigate('/login')
+    } 
     setProperties(storedProperties);
   }, []);
+
+  
 
   const handleOpenDialog = (property) => {
     setSelectedProperty(property);

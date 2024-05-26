@@ -71,6 +71,10 @@ const PropertyManagement = () => {
     setProperties(storedProperties);
     const storedInterestedBuyers = JSON.parse(localStorage.getItem("interestedBuyers")) || [];
     setInterestedBuyers(storedInterestedBuyers);
+    const user = JSON.parse(localStorage.getItem('loggedInUser')) || [];
+    if(!user || user.role !== 'seller'){
+      navigate('/login')
+    } 
   }, []);
 
   const updateLocalStorage = (updatedProperties, updatedBuyers) => {
